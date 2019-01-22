@@ -1,14 +1,166 @@
-body {
-    font-family: 'Roboto', sans-serif;
+html, body {
+    height: 100%;
 }
 
-h1 {
+body {
+    background-color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+}
+div.container {
+    width: 100%;
+
+}
+
+.flex {
+    display: flex;
+    justify-content: normal;
+    height: calc(100% - 320px);
+    padding-top: 215px;
+}
+
+.flexColumns {
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.reservation label {
+    display: block;
+    margin-top: 4px;
+}
+
+/*#reservation input {
+    width: 10px;
+}
+
+#reservation label, input {
+    display: block;
+    float:left;
+    margin-bottom: 10px;
+}
+
+#reservation label {
+    text-align: right;
+    padding-right: 10px;
+    width: 80px;
+}*/
+
+header {
+    font-family: 'Ubuntu', sans-serif;
+    padding: 1em;
+    color: #000000;
+    background-color: rgba(239, 239, 239, 0.9);
+    clear: left;
     text-align: center;
 }
 
 footer {
-    background-color: #777;
-    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 1em;
+    color: #000000;
+    background-color: #efefef;
+    clear: left;
     text-align: center;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+
+nav {
+    background-color: #efefef;
+    float: left;
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    /*margin-left: 170px;*/
+    padding: 1em;
+    overflow: hidden;
+    width: 100%;
+    height 100%
+
+
+}
+
+ul {
+	text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 170px;
+    background-color: #f1f1f1;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 5px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: #5d5d5d;
     color: white;
+}
+
+.right {
+    position: absolute;
+    right: 0px;
+    top: calc(50% - 34px);
+}
+
+.left {
+    position: absolute;
+    left: 10px;
+    top: calc(50% - 54px);
+}
+
+.loginform {
+    text-align: right;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background-size:cover;
+    background-position:center;
+    background-image: url('files/header.png');
+    position: relative;
+
+}
+
+.header {
+    width: 100%;
+    height: 320px;
+    position: absolute;
+}
+
+.subheader {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
