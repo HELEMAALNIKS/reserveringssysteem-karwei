@@ -1,4 +1,5 @@
 <?php
+require_once "database/database.php";
 session_start();
 
 //Mag ik hier uberhaupt komen???
@@ -9,7 +10,9 @@ if (!isset($_SESSION['login'])){    // checkt of er een sessie in werking is
 
 //Haal email op uit sessie
 $email = $_SESSION['login'];
+
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,8 +44,66 @@ $email = $_SESSION['login'];
             </form>
         </div>
     </header>
+
+    <div class="flex">
+        <?php
+        // Create connection
+        $conn = new mysqli($host, $user, $password, $database);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $request = "SELECT id, firstname, lastname, email, adress, zipcode, city, phone FROM reservations";
+        $result = mysqli_query($db, $request);
+
+        $data = [];
+
+        while ($row = mysqli_fetch_array($result)) {
+            $data [] = $row;
+        }
+
+        ?>
+        <table style='margin: auto; padding-top: 10px;'>
+            <tr>
+                <th>ID</th>
+                <th>Naam</th>
+                <th>Email</th>
+                <th>Adres</th>
+                <th>Postcode</th>
+                <th>Plaats</th>
+                <th>Telefoonnummer</th>
+            </tr>
+        <?
+
+        foreach ($data as $reservation) {
+            ?>
+                <tr><td><?=$reservation["id"];?></td>
+                    <td><?=$reservation["firstname"]. " " . $row["lastname"];?></td>
+                    <td><?= $reservation["email"];?></td>
+                    <td><?= $reservation["adress"]; ?></td>
+                    <td><?= $reservation["zipcode"]; ?></td>
+                    <td><?= $reservation["city"]; ?></td>
+                    <td><?= $reservation["phone"]; ?></td>
+                    <td>
+                        <form method='post' action='detail.php'>
+                            <input type="hidden" name="reservation" value="<?= htmlentities($reservation['id']);?>">
+                            <input type="submit" value="Meer info"></form>
+                        <form method='post' action='edit.php'>
+                            <input type="hidden" name="reservation" value="<?= htmlentities($reservation['id']);?>">
+                            <input type="submit" value="Wijzigen"></form>
+                        <form method='post' action='delete.php'>
+                            <input type="hidden" name="reservation" value="<?= htmlentities($reservation['id']);?>">
+                            <input type="submit" value="Verwijderen"></form>
+                    </td>
+                </tr>
+        <?}
+?>        </table><?
+        $db->close();
+        ?>
+    </div>
 </div>
-<footer>Copyright &copy; 2019 Jaron Hoste</footer>
+
 </body>
 
 </html>

@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
     if($email == "" || $password == ""){
         $error = "Vul beide gegevens in";
-    } elseif($email != "jaron@hmcnetwork.nl" || $password != "test") {
+    } elseif($email != "test" || $password != "test") {
         $error = "Combinatie gebruikersnaam/wachtwoord onjuist";
     }
     if (!isset($error)) {
