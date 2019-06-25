@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])){    // checkt of er een sessie in werking is
 }
 
 //Haal email op uit sessie
-$email = $_SESSION['login'];
+$username = $_SESSION['login'];
 
 ?>
 
@@ -36,7 +36,7 @@ $email = $_SESSION['login'];
             </div>
             <div class="right">
                 Je bent nu ingelogd als <br>
-                <?= $email; ?><br>
+                <?= $username; ?><br>
                 <form>
                     <input type="button" value="Uitloggen" onclick="window.location.href='logout.php'" />
                 </form>

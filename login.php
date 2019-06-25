@@ -1,24 +1,29 @@
 <?php
+//include the config.php file
+require_once 'database/database.php';
+
+//start the session
 session_start();
-//Check if post isset
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    if($email == "" || $password == ""){
-        $error = "Vul beide gegevens in";
-    } elseif($email != "test" || $password != "test") {
-        $error = "Combinatie gebruikersnaam/wachtwoord onjuist";
-    }
-    if (!isset($error)) {
-        $_SESSION['login'] = $email;
-    }
-}
+//check if the form has been submitted
+if (isset($_POST)) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
 
-//Ben in ingelogd?
-if (isset($_SESSION['login'])){    // checkt of er een sessie in werking is
-    header("Location: secure.php");
-    exit;
+    //check if submitted username and password are correct
+    $sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $count = mysqli_num_rows($result);
+
+    // if the login is correct, make a new session then redirect to index.php
+    if ($count == 1){
+        $_SESSION['username'] = $row['username'];
+        if (isset($_SESSION['username'])){
+            header ('Location: index.php');
+        }
+    }
 }
 ?>
 <!doctype html>
